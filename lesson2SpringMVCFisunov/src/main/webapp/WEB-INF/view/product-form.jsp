@@ -14,9 +14,9 @@
                 <form:option value="300" label="300" />
                 <form:option value="400" label="400" />
             </form:select>
-            <br> <form:input path="id" />
             <br>
-            ID:
+            ID: <form:input path="id" />
+            <br>
             <input type="submit" value="Submit" />
         </form:form>
     </body>

@@ -16,6 +16,10 @@ public class ProductsService {
         this.productRepository = productRepository;
     }
 
+    public void add(Product product){
+        productRepository.add(product);
+    }
+
     public Product getProductByID(long id){
         return productRepository.getProductByID(id);
     }

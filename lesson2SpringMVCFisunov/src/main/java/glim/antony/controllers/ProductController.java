@@ -5,7 +5,10 @@ import glim.antony.services.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/products")
@@ -25,4 +28,20 @@ public class ProductController {
         model.addAttribute("product", product);
         return "product-form";
     }
+
+    // http://localhost:8189/app/products/processForm
+    @RequestMapping("processForm")
+    public String processForm(@ModelAttribute("product") Product product){
+        productsService.add(product);
+        return "product-form-result";
+    }
+
+    // http://localhost:8189/app/products/showAll
+    @RequestMapping("showAll")
+    public String showAll(Model model){
+        List<Product> products = productsService.getProductList();
+        model.addAttribute("products", products);
+        return "product-show-all";
+    }
+
 }
