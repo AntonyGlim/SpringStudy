@@ -8,15 +8,8 @@ import javax.servlet.Filter;
 
 /**
  * Данный класс расширяет абстрактный класс AbstractAnnotationConfigDispatcherServletInitializer ,
- * в
- * котором
- * автоматически
- * вызываются
- * методы
- * createRootApplicationContext()
- * и
- * createServletApplicationContext() . Они используют переопределенные нами методы для объявления
- * сервлета и формирования общего контекста.
+ * в котором автоматически вызываются методы createRootApplicationContext() и createServletApplicationContext().
+ * Они используют переопределенные нами методы для объявления сервлета и формирования общего контекста.
  */
 public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
