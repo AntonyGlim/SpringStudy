@@ -33,7 +33,7 @@ public class ProductController {
     @RequestMapping("processForm")
     public String processForm(@ModelAttribute("product") Product product){
         productsService.add(product);
-        return "product-form-result";
+        return "product-form";
     }
 
     // http://localhost:8189/app/products/showAll

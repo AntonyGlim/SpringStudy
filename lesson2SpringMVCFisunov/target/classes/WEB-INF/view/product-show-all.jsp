@@ -9,7 +9,7 @@
 
         <ul>
             <c:forEach var="product" items="${products}">
-                <li>ID: ${product.getId()} Title: ${product.getTitle()} Cost: ${product.getCost()}}</li>
+                <li>ID: ${product.getId()} Title: ${product.getTitle()} Cost: ${product.getCost()}</li>
             </c:forEach>
         </ul>
     </body>

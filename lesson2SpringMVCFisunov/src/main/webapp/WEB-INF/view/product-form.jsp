@@ -17,7 +17,11 @@
             <br>
             ID: <form:input path="id" />
             <br>
-            <input type="submit" value="Submit" />
+            <input type="submit" value="ADD" />
+        </form:form>
+
+        <form:form action="showAll">
+            <input type="submit" value="ShowAll" />
         </form:form>
     </body>
 </html>
