@@ -8,8 +8,8 @@
         <br>
 
         <ul>
-            <c:forEach var="item" items="${products}">
-                <li>${item}</li>
+            <c:forEach var="product" items="${products}">
+                <li>ID: ${product.getId()} Title: ${product.getTitle()} Cost: ${product.getCost()}</li>
             </c:forEach>
         </ul>
     </body>
