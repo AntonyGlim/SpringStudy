@@ -1,6 +1,6 @@
 package glim.antony.examples.advanced;
 
-import com.geekbrains.hibernate.basic.*;
+import glim.antony.examples.basic.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
