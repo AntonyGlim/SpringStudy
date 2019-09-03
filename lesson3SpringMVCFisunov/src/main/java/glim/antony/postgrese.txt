@@ -1,0 +1,61 @@
+https://eax.me/postgresql-install/
+
+root root
+
+postgres=# CREATE SCHEMA hiber;
+CREATE SCHEMA
+postgres=# \dn
+  List of schemas
+  Name  |  Owner
+--------+----------
+ hiber  | postgres
+ public | postgres
+(2 rows)
+
+postgres=# SET search_path TO public;
+SET
+postgres=#
+
+postgres=# \dt
+Did not find any relations.
+postgres=#
+
+postgres=# CREATE TABLE simple_items (id serial, title varchar(255), cost int, PRIMARY KEY(id));
+CREATE TABLE
+
+postgres=# \d simple_items;
+                                    Table "public.simple_items"
+ Column |          Type          | Collation | Nullable |                 Default
+--------+------------------------+-----------+----------+------------------------------------------
+ id     | integer                |           | not null | nextval('simple_items_id_seq'::regclass)
+ title  | character varying(255) |           |          |
+ cost   | integer                |           |          |
+Indexes:
+    "simple_items_pkey" PRIMARY KEY, btree (id)
+
+postgres=# SELECT * FROM simple_items;
+ id | title | cost
+----+-------+------
+(0 rows)
+
+\du
+                                   List of roles
+ Role name |                         Attributes                         | Member of
+-----------+------------------------------------------------------------+-----------
+ postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
+ root      |                                                            | {}
+ test_user |                                                            | {}
+
+#установим пользователю новый пароль
+postgres=# ALTER USER postgres PASSWORD 'postgres';
+ALTER ROLE
+
+#запустим приложение
+postgres=# SELECT * FROM simple_items;
+ id | title | cost
+----+-------+------
+  1 | Java  |  100
+(1 row)
+
+
+

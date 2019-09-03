@@ -9,28 +9,25 @@ public class MainClass {
     public static void main(String[] args) {
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
-                .addAnnotatedClass(Book.class)
-                .addAnnotatedClass(Author.class)
-                .addAnnotatedClass(Reader.class)
-                .addAnnotatedClass(Catalog.class)
                 .buildSessionFactory();
 
-        // CRUD
         Session session = null;
 
         try {
-//            session = factory.getCurrentSession();
-//            Author author = new Author();
-//            author.setName("Rowling");
-//            session.beginTransaction();
-//            session.save(author);
-//            session.getTransaction().commit();
-
             session = factory.getCurrentSession();
+            SimpleItem simpleItem = new SimpleItem();
+            simpleItem.setCost(100);
+            simpleItem.setTitle("Java");
+
             session.beginTransaction();
-            Reader reader = session.get(Reader.class, 1);
-            Book book = session.get(Book.class, 2);
-            book = session.createQuery("from Book b where b.id = :id", Book.class).setParameter("id", 1).getSingleResult();
+            session.save(simpleItem);
+            session.getTransaction().commit();
+
+//            session = factory.getCurrentSession();
+//            session.beginTransaction();
+//            Reader reader = session.get(Reader.class, 1);
+//            Book book = session.get(Book.class, 2);
+//            book = session.createQuery("from Book b where b.id = :id", Book.class).setParameter("id", 1).getSingleResult();
 //            reader.getBooks().add(book);
 
 
@@ -39,8 +36,8 @@ public class MainClass {
 //   where pl.languages.shortname ='eng'
 //            List<Book> books = session.createQuery("from Book b JOIN b.author a WHERE b.id = a.id", Book.class).getResultList();
 //            System.out.println(books);
-            reader.getBooks().clear();
-            session.getTransaction().commit();
+//            reader.getBooks().clear();
+//            session.getTransaction().commit();
 //            CREATE
 //            session = factory.getCurrentSession();
 //            Catalog catalog = new Catalog("Fantasy #15");
@@ -56,19 +53,19 @@ public class MainClass {
 //            System.out.println(harryPotterBook);
 
 
-            session = factory.getCurrentSession();
-            session.beginTransaction();
-            Catalog catalog2 = session.find(Catalog.class, 2L);
-
-
-            session.getTransaction().commit();
-
-            session = factory.getCurrentSession();
-            session.beginTransaction();
-            catalog2 = session.find(Catalog.class, 2L);
-            session.getTransaction().commit();
-
-            System.out.println(catalog2);
+//            session = factory.getCurrentSession();
+//            session.beginTransaction();
+//            Catalog catalog2 = session.find(Catalog.class, 2L);
+//
+//
+//            session.getTransaction().commit();
+//
+//            session = factory.getCurrentSession();
+//            session.beginTransaction();
+//            catalog2 = session.find(Catalog.class, 2L);
+//            session.getTransaction().commit();
+//
+//            System.out.println(catalog2);
 
 //            UPDATE
 //            session = factory.getCurrentSession();
