@@ -3,7 +3,7 @@ package glim.antony.task;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "clients")
+@Table(name = "products")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,6 +15,10 @@ public class Product {
 
     @Column(name = "cost")
     private double cost;
+
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
 
     public Product() {
     }
@@ -41,5 +45,13 @@ public class Product {
 
     public void setCost(double cost) {
         this.cost = cost;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 }

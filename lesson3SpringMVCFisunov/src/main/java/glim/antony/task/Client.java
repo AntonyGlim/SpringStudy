@@ -14,7 +14,7 @@ public class Client {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "")
+    @OneToMany(mappedBy = "client")
     private List<Product> products;
 
     public Client() {
@@ -34,5 +34,13 @@ public class Client {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }
