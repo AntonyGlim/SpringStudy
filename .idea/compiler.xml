@@ -10,5 +10,8 @@
         <module name="SpringMVCStart" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="lesson3SpringMVCFisunov" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
