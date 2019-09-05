@@ -49,7 +49,7 @@ public class ConsoleAPI {
             session.save(cheese);
             session.save(bob);
             session.getTransaction().commit();
-            
+
         } finally {
             factory.close();
             session.close();

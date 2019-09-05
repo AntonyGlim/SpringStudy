@@ -1,0 +1,4 @@
+CREATE TABLE clients (id serial, name varchar(255), PRIMARY KEY (id));
+
+CREATE TABLE products (id serial, title varchar(255), cost double, client_id integer REFERENCES clients (id));
+
