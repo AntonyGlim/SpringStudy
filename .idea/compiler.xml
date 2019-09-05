@@ -9,7 +9,12 @@
         <module name="lesson2SpringMVCFisunov" />
         <module name="lesson3SpringMVCFisunov" />
         <module name="SpringMVCStart" />
+        <module name="HibernateExamples" />
+        <module name="lesson2SpringMVCFisunov" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="lesson3SpringMVCFisunov" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
