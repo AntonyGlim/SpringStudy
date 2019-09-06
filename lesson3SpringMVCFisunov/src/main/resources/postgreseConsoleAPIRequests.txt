@@ -11,7 +11,7 @@ SET search_path TO lesson3;
 
 DROP TABLE IF EXISTS clients CASCADE;
 CREATE TABLE clients (id serial, name varchar(255), PRIMARY KEY (id));
-SELECT * FROM clients;
+\d clients;
 INSERT INTO clients (name) VALUES
 ('Bob'),
 ('Sem'),
@@ -22,7 +22,7 @@ SELECT * FROM clients;
 
 DROP TABLE IF EXISTS products CASCADE;
 CREATE TABLE products (id serial, title varchar(255), cost integer, client_id integer REFERENCES clients (id));
-SELECT * FROM products;
+\d products;
 INSERT INTO products (title, cost, client_id) VALUES
 ('milk', 32, 1),
 ('bread', 18, 1),

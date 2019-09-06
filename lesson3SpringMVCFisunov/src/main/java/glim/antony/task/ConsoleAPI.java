@@ -52,7 +52,7 @@ public class ConsoleAPI {
 //            session.getTransaction().commit();
 
             session = factory.getCurrentSession();
-            
+
             Scanner scanner = new Scanner(System.in);
             int operationNumber = 0;
             do {
