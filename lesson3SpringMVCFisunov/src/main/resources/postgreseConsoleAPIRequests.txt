@@ -1,4 +1,20 @@
+\! chcp 1251
+
+\dn
+
+DROP SCHEMA IF EXISTS lesson3 CASCADE;
+CREATE SCHEMA lesson3;
+
+\dn
+
+SET search_path TO lesson3;
+
+DROP TABLE IF EXISTS clients CASCADE;
 CREATE TABLE clients (id serial, name varchar(255), PRIMARY KEY (id));
 
-CREATE TABLE products (id serial, title varchar(255), cost double, client_id integer REFERENCES clients (id));
+SELECT * FROM clients;
 
+DROP TABLE IF EXISTS products CASCADE;
+CREATE TABLE products (id serial, title varchar(255), cost integer, client_id integer REFERENCES clients (id));
+
+SELECT * FROM products;

@@ -14,7 +14,7 @@ public class Product {
     private String title;
 
     @Column(name = "cost")
-    private double cost;
+    private Integer cost;
 
     @ManyToOne
     @JoinColumn(name = "client_id")
@@ -39,11 +39,11 @@ public class Product {
         this.title = title;
     }
 
-    public double getCost() {
+    public Integer getCost() {
         return cost;
     }
 
-    public void setCost(double cost) {
+    public void setCost(Integer cost) {
         this.cost = cost;
     }
 
