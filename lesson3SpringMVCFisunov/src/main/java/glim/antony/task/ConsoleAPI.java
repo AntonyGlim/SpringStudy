@@ -6,6 +6,7 @@ import org.hibernate.cfg.Configuration;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * 1. В базе данных (Postgrese) необходимо реализовать возможность
@@ -49,7 +50,21 @@ public class ConsoleAPI {
 //            session.save(cheese);
 //            session.save(bob);
 //            session.getTransaction().commit();
+
+            session = factory.getCurrentSession();
             
+            Scanner scanner = new Scanner(System.in);
+            int operationNumber = 0;
+            do {
+                System.out.println("Введите номер операции или 0 для выхода");
+                operationNumber = scanner.nextInt();
+                switch (operationNumber){
+                    case 1:
+                        break;
+                    case 2:
+
+                }
+            } while (operationNumber == 0);
 
         } finally {
             factory.close();
