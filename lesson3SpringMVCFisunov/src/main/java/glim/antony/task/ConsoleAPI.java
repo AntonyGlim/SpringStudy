@@ -27,28 +27,29 @@ public class ConsoleAPI {
         Session session = null;
 
         try {
-            session = factory.getCurrentSession();
-
-            Product milk = new Product(); milk.setTitle("milk"); milk.setCost(40);
-            Product bread = new Product(); bread.setTitle("bread"); bread.setCost(20);
-            Product cheese = new Product(); cheese.setTitle("cheese"); cheese.setCost(90);
-
-            List<Product> productList = new ArrayList<>();
-            productList.add(milk);
-            productList.add(bread);
-            productList.add(cheese);
-
-            Client bob = new Client(); bob.setName("Bob"); bob.setProducts(productList);
-            for (Product product : productList) {
-                product.setClient(bob);
-            }
-
-            session.beginTransaction();
-            session.save(milk);
-            session.save(bread);
-            session.save(cheese);
-            session.save(bob);
-            session.getTransaction().commit();
+//            session = factory.getCurrentSession();
+//
+//            Product milk = new Product(); milk.setTitle("milk"); milk.setCost(40);
+//            Product bread = new Product(); bread.setTitle("bread"); bread.setCost(20);
+//            Product cheese = new Product(); cheese.setTitle("cheese"); cheese.setCost(90);
+//
+//            List<Product> productList = new ArrayList<>();
+//            productList.add(milk);
+//            productList.add(bread);
+//            productList.add(cheese);
+//
+//            Client bob = new Client(); bob.setName("Bob"); bob.setProducts(productList);
+//            for (Product product : productList) {
+//                product.setClient(bob);
+//            }
+//
+//            session.beginTransaction();
+//            session.save(milk);
+//            session.save(bread);
+//            session.save(cheese);
+//            session.save(bob);
+//            session.getTransaction().commit();
+            
 
         } finally {
             factory.close();
