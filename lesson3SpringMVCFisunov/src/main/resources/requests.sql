@@ -1,11 +1,11 @@
 /*for Windows*/
-\! chcp 1251 
+\! chcp 1251
 
 /*for Linux*/
-sudo -i -u postgres
-psql
+-- sudo -i -u postgres
+-- psql
 /*new password for user postgres*/
-/*ALTER USER postgres PASSWORD 'admin';*/
+-- ALTER USER postgres PASSWORD 'admin';
 
 \dn
 
