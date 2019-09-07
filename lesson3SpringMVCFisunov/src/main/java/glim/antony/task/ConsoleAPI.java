@@ -18,40 +18,56 @@ import java.util.Scanner;
  * 2. * Добавить детализацию по паре «покупатель — товар»: сколько стоил товар в момент покупки клиентом.
  */
 public class ConsoleAPI {
+
+    public static SessionFactory factory = new Configuration()
+            .configure("consoleapi.cfg.xml")
+            .buildSessionFactory();
+
+    public static Session session = null;
+
     public static void main(String[] args) {
 
-        SessionFactory factory = new Configuration()
-                .configure("consoleapi.cfg.xml")
-                .buildSessionFactory();
-
-        Session session = null;
-
         try {
-            session = factory.getCurrentSession();
-            session.beginTransaction();
-            Client client = session.get(Client.class, 1L);
-            System.out.println(client);
-            System.out.println("Products: ");
-            for (Product p : client.getProducts()) {
-                System.out.println(p.getTitle());
-            }
-            session.getTransaction().commit();
-//            Scanner scanner = new Scanner(System.in);
-//            int operationNumber = 0;
-//            do {
-//                System.out.println("Введите номер операции или 0 для выхода");
-//                operationNumber = scanner.nextInt();
-//                switch (operationNumber){
-//                    case 1:
-//                        break;
-//                    case 2:
-//
-//                }
-//            } while (operationNumber == 0);
+
+            showProductsList(1L);
+            showClientsList(2L);
+            deleteProductById(1L);
 
         } finally {
             factory.close();
             session.close();
         }
+    }
+
+    private static Product deleteProductById(Long id){
+        session = factory.getCurrentSession();
+        session.beginTransaction();
+        Product product = session.get(Product.class, id);
+        session.delete(session.get(Product.class, id));
+        session.getTransaction().commit();
+
+        System.out.println("Deleted product: " + product);
+        return product;
+    }
+
+    private static void showProductsList(Long clientId){
+        session = factory.getCurrentSession();
+        session.beginTransaction();
+        Client client = session.get(Client.class, clientId);
+        System.out.println(client);
+        System.out.println("Products: ");
+        for (Product p : client.getProducts()) {
+            System.out.println(p.getTitle());
+        }
+    }
+
+    private static void showClientsList(Long productId){
+        Product product = session.get(Product.class, productId);
+        System.out.println(product);
+        System.out.println("Clients: ");
+        for (Client c : product.getClients()) {
+            System.out.println(c.getName());
+        }
+        session.getTransaction().commit();
     }
 }
