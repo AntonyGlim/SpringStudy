@@ -5,22 +5,18 @@
 <hibernate-configuration>
     <session-factory>
         <property name="connection.driver_class">org.postgresql.Driver</property>
-        <property name="connection.url">jdbc:postgresql://localhost:5432/postgres</property>
+        <property name="connection.url">jdbc:postgresql://localhost:5432/postgres?currentSchema=lesson3</property>
         <property name="connection.username">postgres</property>
-        <property name="connection.password">postgres</property>
+        <property name="connection.password">admin</property>
         <property name="connection.pool_size">1</property>
         <property name="dialect">org.hibernate.dialect.PostgreSQL94Dialect</property>
-        <property name="show_sql">true</property>
+        <property name="show_sql">false</property>
         <property name="current_session_context_class">thread</property>
 
         <property name="hibernate.hbm2ddl.auto">none</property>
 
-        <!--<property name="hibernate.connection.isolation">4</property>-->
+        <mapping class="glim.antony.task.Client"/>
+        <mapping class="glim.antony.task.Product"/>
 
-        <mapping class="glim.antony.examples.basic.SimpleItem"/>
-<!--        <mapping class="glim.antony.examples.advanced.Product"/>-->
-<!--        <mapping class="glim.antony.examples.advanced.Customer"/>-->
-<!--        <mapping class="glim.antony.examples.advanced.Manufacturer"/>-->
-<!--        <mapping class="glim.antony.examples.advanced.BigItem"/>-->
     </session-factory>
 </hibernate-configuration>
