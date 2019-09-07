@@ -20,4 +20,8 @@ public class ProductsService {
     public List<Product> findAll() {
         return (List<Product>)productsRepository.findAll();
     }
+
+    public Product findByCost(Integer cost){
+        return productsRepository.findByCost(cost);
+    }
 }

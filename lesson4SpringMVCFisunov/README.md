@@ -40,3 +40,30 @@ PRIMARY KEY (id));
 ```  
 3. налажена цепочка отображения информации на страницу по схеме: Контроллер -> Сервис -> Репозиторий.
 Все продукты отображаются на странице при помощи метода findAll (Spring-Data).
+
+4. Отображение минимального и максимального элемента по цене пока не доделал.
+```
+@GetMapping("/products")
+public String showProductsPage(Model model) {
+    List<Product> productsList = productsService.findAll();
+    model.addAttribute("products", productsList);
+    return "products";
+}
+
+@GetMapping("/submit_form")
+@ResponseBody
+public String getFormResult(@RequestParam(name = "minOrMax") String word, Model model) {
+    List<Product> productsList = new ArrayList<>();
+    if (word.equalsIgnoreCase("min")){
+        productsList.add((Product)productsService.findByCost(12));
+    }
+    if (word.equalsIgnoreCase("max")){
+
+    }
+    if (word.equalsIgnoreCase("minandmax")){
+
+    }
+    model.addAttribute("products", productsList);
+    return "products";
+}
+```
