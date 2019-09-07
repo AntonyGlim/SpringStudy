@@ -62,4 +62,9 @@ public class Product implements Serializable {
     public void setClients(List<Client> clients) {
         this.clients = clients;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Product [id = %d, title = %s, cost = %d]", id, title, cost);
+    }
 }
