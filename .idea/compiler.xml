@@ -6,10 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="SpringMVCStart" />
+        <module name="lesson3SpringMVCFisunov" />
         <module name="HibernateExamples" />
         <module name="lesson2SpringMVCFisunov" />
-        <module name="lesson3SpringMVCFisunov" />
-        <module name="SpringMVCStart" />
       </profile>
     </annotationProcessing>
   </component>
