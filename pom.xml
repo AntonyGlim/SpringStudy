@@ -13,6 +13,7 @@
         <module>lesson2SpringMVCFisunov</module>
         <module>lesson3SpringMVCFisunov</module>
         <module>HibernateExamples</module>
+        <module>SpringMVC_JDBC_Hibernate_SpringData</module>
     </modules>
 
 
