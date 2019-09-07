@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+
+    <title>Продукты</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Продукты:</h2>
+    <table class="table table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Стоимость</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="prod : ${products}">
+            <td th:text="${prod.id}"/>
+            <td th:text="${prod.title}"/>
+            <td th:text="${prod.cost}"/>
+        </tr>
+        </tbody>
+    </table>
+
+    <form th:action="@{/submit_form}" method="get">
+        <input th:name="word" type="text" placeholder="Название">
+        <input th:name="value" type="number" placeholder="Число">
+        <button type="submit" class="btn btn-primary">Подтвердить</button>
+    </form>
+</div>
+
+</body>
+</html>
