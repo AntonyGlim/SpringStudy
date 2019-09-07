@@ -9,6 +9,7 @@
         <module name="SpringMVCStart" />
         <module name="lesson3SpringMVCFisunov" />
         <module name="HibernateExamples" />
+        <module name="lesson4SpringMVCFisunov" />
         <module name="lesson2SpringMVCFisunov" />
       </profile>
     </annotationProcessing>
