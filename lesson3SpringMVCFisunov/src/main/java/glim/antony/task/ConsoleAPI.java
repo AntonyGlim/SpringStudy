@@ -4,8 +4,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -21,50 +19,35 @@ import java.util.Scanner;
  */
 public class ConsoleAPI {
     public static void main(String[] args) {
+
         SessionFactory factory = new Configuration()
-                .configure("hibernate.consoleapi.cfg.xml")
+                .configure("consoleapi.cfg.xml")
                 .buildSessionFactory();
 
         Session session = null;
 
         try {
-//            session = factory.getCurrentSession();
-//
-//            Product milk = new Product(); milk.setTitle("milk"); milk.setCost(40);
-//            Product bread = new Product(); bread.setTitle("bread"); bread.setCost(20);
-//            Product cheese = new Product(); cheese.setTitle("cheese"); cheese.setCost(90);
-//
-//            List<Product> productList = new ArrayList<>();
-//            productList.add(milk);
-//            productList.add(bread);
-//            productList.add(cheese);
-//
-//            Client bob = new Client(); bob.setName("Bob"); bob.setProducts(productList);
-//            for (Product product : productList) {
-//                product.setClient(bob);
-//            }
-//
-//            session.beginTransaction();
-//            session.save(milk);
-//            session.save(bread);
-//            session.save(cheese);
-//            session.save(bob);
-//            session.getTransaction().commit();
-
             session = factory.getCurrentSession();
-
-            Scanner scanner = new Scanner(System.in);
-            int operationNumber = 0;
-            do {
-                System.out.println("Введите номер операции или 0 для выхода");
-                operationNumber = scanner.nextInt();
-                switch (operationNumber){
-                    case 1:
-                        break;
-                    case 2:
-
-                }
-            } while (operationNumber == 0);
+            session.beginTransaction();
+            Client client = session.get(Client.class, 1L);
+            System.out.println(client);
+            System.out.println("Products: ");
+            for (Product p : client.getProducts()) {
+                System.out.println(p.getTitle());
+            }
+            session.getTransaction().commit();
+//            Scanner scanner = new Scanner(System.in);
+//            int operationNumber = 0;
+//            do {
+//                System.out.println("Введите номер операции или 0 для выхода");
+//                operationNumber = scanner.nextInt();
+//                switch (operationNumber){
+//                    case 1:
+//                        break;
+//                    case 2:
+//
+//                }
+//            } while (operationNumber == 0);
 
         } finally {
             factory.close();
