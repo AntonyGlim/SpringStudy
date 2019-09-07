@@ -28,7 +28,6 @@ public class ConsoleAPI {
     public static void main(String[] args) {
 
         try {
-
             showProductsList(1L);
             showClientsList(2L);
             deleteProductById(1L);
@@ -39,17 +38,23 @@ public class ConsoleAPI {
         }
     }
 
+    /**Метод удалит продукт по id*/
     private static Product deleteProductById(Long id){
+        Product product = null;
         session = factory.getCurrentSession();
         session.beginTransaction();
-        Product product = session.get(Product.class, id);
-        session.delete(session.get(Product.class, id));
+        product = session.get(Product.class, id);
+        try {
+            session.delete(session.get(Product.class, id));
+        } catch (IllegalArgumentException e){
+            System.out.println("No such element in DB!");
+        }
         session.getTransaction().commit();
-
         System.out.println("Deleted product: " + product);
         return product;
     }
 
+    /**Метод выведет информацию о всех покупках пользователя*/
     private static void showProductsList(Long clientId){
         session = factory.getCurrentSession();
         session.beginTransaction();
@@ -61,6 +66,7 @@ public class ConsoleAPI {
         }
     }
 
+    /**Метод выведет информацию о всех пользователях, которые купили товар*/
     private static void showClientsList(Long productId){
         Product product = session.get(Product.class, productId);
         System.out.println(product);
