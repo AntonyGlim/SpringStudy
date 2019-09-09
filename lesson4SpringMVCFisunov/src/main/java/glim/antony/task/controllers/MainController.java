@@ -38,29 +38,20 @@ public class MainController {
     }
 
     @GetMapping("/minmaxfilter")
-    @ResponseBody
     public String showProductsWithFilterByMinMaxCost(
-            @RequestParam(name = "minPrice") int minPrice,
-            @RequestParam(name = "maxPrice") int maxPrice
+            @RequestParam(name = "minPrice") Integer minPrice,
+            @RequestParam(name = "maxPrice") Integer maxPrice,
+            Model model
     ){
-        return minPrice + " " + maxPrice;
-//        return "redirect:/products/";
-    }
-
-    @GetMapping("/submit_form")
-    @ResponseBody
-    public String getFormResult(@RequestParam(name = "minOrMax") String word, Model model) {
-        List<Product> productsList = new ArrayList<>();
-        if (word.equalsIgnoreCase("min")){
-            productsList.add((Product)productsService.findByCost(12));
+        if (minPrice == null){
+            minPrice = 0;
         }
-        if (word.equalsIgnoreCase("max")){
-
+        if (maxPrice == null){
+            maxPrice = Integer.MAX_VALUE;
         }
-        if (word.equalsIgnoreCase("minandmax")){
-
-        }
+        List<Product> productsList = productsService.findAllByCostBetween(minPrice, maxPrice);
         model.addAttribute("products", productsList);
         return "products";
     }
+
 }

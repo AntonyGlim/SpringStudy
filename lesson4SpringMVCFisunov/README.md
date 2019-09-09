@@ -41,29 +41,49 @@ PRIMARY KEY (id));
 3. налажена цепочка отображения информации на страницу по схеме: Контроллер -> Сервис -> Репозиторий.
 Все продукты отображаются на странице при помощи метода findAll (Spring-Data).
 
-4. Отображение минимального и максимального элемента по цене пока не доделал.
+4. Отображение минимального и максимального элемента по цене.
 ```
-@GetMapping("/products")
-public String showProductsPage(Model model) {
-    List<Product> productsList = productsService.findAll();
+/*В контроллере*/
+@GetMapping("/minmaxfilter")
+public String showProductsWithFilterByMinMaxCost(
+        @RequestParam(name = "minPrice") Integer minPrice,
+        @RequestParam(name = "maxPrice") Integer maxPrice,
+        Model model
+){
+    if (minPrice == null){
+        minPrice = 0;
+    }
+    if (maxPrice == null){
+        maxPrice = Integer.MAX_VALUE;
+    }
+    List<Product> productsList = productsService.findAllByCostBetween(minPrice, maxPrice);
     model.addAttribute("products", productsList);
     return "products";
 }
+```
 
-@GetMapping("/submit_form")
-@ResponseBody
-public String getFormResult(@RequestParam(name = "minOrMax") String word, Model model) {
-    List<Product> productsList = new ArrayList<>();
-    if (word.equalsIgnoreCase("min")){
-        productsList.add((Product)productsService.findByCost(12));
-    }
-    if (word.equalsIgnoreCase("max")){
+```
+/*В файле products.html*/
+<table class="table table-hover">
+    <thead class="thead-dark">
+    <tr>
+        <th>ID</th>
+        <th>Название</th>
+        <th>Стоимость</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="prod : ${products}">
+        <td th:text="${prod.id}"/>
+        <td th:text="${prod.title}"/>
+        <td th:text="${prod.cost}"/>
+    </tr>
+    </tbody>
+</table>
 
-    }
-    if (word.equalsIgnoreCase("minandmax")){
-
-    }
-    model.addAttribute("products", productsList);
-    return "products";
-}
+<form th:action="@{/minmaxfilter}" method="get">
+    <input th:name="minPrice" type="number" placeholder="Минимальная стоимость">
+    <input th:name="maxPrice" type="number" placeholder="Максимальная стоимость">
+    <button type="submit" class="btn btn-primary">Фильтровать</button>
+</form>
 ```
