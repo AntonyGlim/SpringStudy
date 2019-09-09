@@ -37,6 +37,16 @@ public class MainController {
         return "products";
     }
 
+    @GetMapping("/minmaxfilter")
+    @ResponseBody
+    public String showProductsWithFilterByMinMaxCost(
+            @RequestParam(name = "minPrice") int minPrice,
+            @RequestParam(name = "maxPrice") int maxPrice
+    ){
+        return minPrice + " " + maxPrice;
+//        return "redirect:/products/";
+    }
+
     @GetMapping("/submit_form")
     @ResponseBody
     public String getFormResult(@RequestParam(name = "minOrMax") String word, Model model) {

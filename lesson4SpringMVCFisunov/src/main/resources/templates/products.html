@@ -31,9 +31,10 @@
         </tbody>
     </table>
 
-    <form th:action="@{/submit_form}" method="get">
-        <input th:name="minOrMax" type="text" placeholder="Параметр">
-        <button type="submit" class="btn btn-primary">Подтвердить</button>
+    <form th:action="@{/minmaxfilter}" method="get">
+        <input th:name="minPrice" type="number" placeholder="Минимальная стоимость">
+        <input th:name="maxPrice" type="number" placeholder="Максимальная стоимость">
+        <button type="submit" class="btn btn-primary">Фильтровать</button>
     </form>
 </div>
 
