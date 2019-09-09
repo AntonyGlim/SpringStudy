@@ -1,0 +1,69 @@
+**Задание**
+ 1. Создать сущность «товар» (id, название, стоимость) и соответствующую таблицу в БД. Заполнить таблицу тестовыми данными (20 записей).
+ 2. Сделать страницу, в которую будут выведены эти записи.
+ 3. С помощью GET-запроса указывать фильтрацию по:  
+ 3.1 только минимальной,  
+ 3.2 только максимальной,  
+ 3.3 или минимальной и максимальной цене.
+ 4. *Добавить постраничное отображение (по 5 записей на странице).
+   
+ **Решение**
+ 1. В проекте использован SpringBoot
+ 2. Сконфигурирована таблица:  
+```
+CREATE TABLE products 
+(id bigserial, title varchar(255), cost integer, 
+PRIMARY KEY (id)); 
+ id |   title   | cost 
+----+-----------+------
+  1 | milk      |   32
+  2 | bread     |   18
+  3 | cheese    |   99
+  4 | tomato    |   47
+  5 | lime      |   32
+  6 | butter    |   87
+  7 | apple     |   98
+  8 | asparagus |   18
+  9 | eggs      |   60
+ 10 | banana    |   44
+ 11 | beef      |   55
+ 12 | beet      |   78
+ 13 | berry     |  200
+ 14 | biscuits  |  120
+ 15 | bream     |  150
+ 16 | cabbage   |   60
+ 17 | cake      |   35
+ 18 | carrot    |   78
+ 19 | cherry    |  250
+ 20 | sold      |   12
+(20 rows)
+```  
+3. налажена цепочка отображения информации на страницу по схеме: Контроллер -> Сервис -> Репозиторий.
+Все продукты отображаются на странице при помощи метода findAll (Spring-Data).
+
+4. Отображение минимального и максимального элемента по цене пока не доделал.
+```
+@GetMapping("/products")
+public String showProductsPage(Model model) {
+    List<Product> productsList = productsService.findAll();
+    model.addAttribute("products", productsList);
+    return "products";
+}
+
+@GetMapping("/submit_form")
+@ResponseBody
+public String getFormResult(@RequestParam(name = "minOrMax") String word, Model model) {
+    List<Product> productsList = new ArrayList<>();
+    if (word.equalsIgnoreCase("min")){
+        productsList.add((Product)productsService.findByCost(12));
+    }
+    if (word.equalsIgnoreCase("max")){
+
+    }
+    if (word.equalsIgnoreCase("minandmax")){
+
+    }
+    model.addAttribute("products", productsList);
+    return "products";
+}
+```

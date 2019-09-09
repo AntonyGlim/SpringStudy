@@ -9,8 +9,14 @@
         <module name="SpringMVCStart" />
         <module name="lesson3SpringMVCFisunov" />
         <module name="HibernateExamples" />
+        <module name="lesson4SpringMVCFisunov" />
         <module name="lesson2SpringMVCFisunov" />
       </profile>
     </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="lesson4SpringMVCFisunov" options="-parameters" />
+    </option>
   </component>
 </project>
