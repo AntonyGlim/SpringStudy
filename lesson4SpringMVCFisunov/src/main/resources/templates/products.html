@@ -13,6 +13,13 @@
 <body>
 
 <div class="container">
+
+    <form th:action="@{/minmaxfilter}" method="get">
+        <input th:name="minPrice" type="number" placeholder="Минимальная стоимость">
+        <input th:name="maxPrice" type="number" placeholder="Максимальная стоимость">
+        <button type="submit" class="btn btn-primary">Фильтровать</button>
+    </form>
+
     <h2>Продукты:</h2>
     <table class="table table-hover">
         <thead class="thead-dark">
@@ -31,11 +38,16 @@
         </tbody>
     </table>
 
-    <form th:action="@{/minmaxfilter}" method="get">
-        <input th:name="minPrice" type="number" placeholder="Минимальная стоимость">
-        <input th:name="maxPrice" type="number" placeholder="Максимальная стоимость">
-        <button type="submit" class="btn btn-primary">Фильтровать</button>
-    </form>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="find?pageNumber=0">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="find?pageNumber=1">1</a></li>
+            <li class="page-item"><a class="page-link" href="find?pageNumber=2">2</a></li>
+            <li class="page-item"><a class="page-link" href="find?pageNumber=3">3</a></li>
+            <li class="page-item"><a class="page-link" href="find?pageNumber=4">Next</a></li>
+        </ul>
+    </nav>
+
 </div>
 
 </body>

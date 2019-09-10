@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class MainController {
@@ -57,9 +58,17 @@ public class MainController {
     }
 
     @GetMapping("/products/find")
-    public String showProductsOnPages(Model model){
-        List<Product> productsList = pageProductsService.findAllWithPaging(5);
+    public String showProductsOnPages(
+            @RequestParam(name = "pageNumber", required = false) Optional<Integer> pageNumber,
+            @RequestParam(name = "size", required = false) Optional<Integer> size,
+            Model model
+    ){
+        int currentPage = pageNumber.orElse(0);
+        int pageSize = size.orElse(5);
+
+        List<Product> productsList = pageProductsService.findAllWithPaging(currentPage, pageSize);
         model.addAttribute("products", productsList);
+
         return "products";
     }
 
