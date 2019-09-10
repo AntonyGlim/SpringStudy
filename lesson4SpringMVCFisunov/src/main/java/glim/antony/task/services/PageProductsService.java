@@ -20,7 +20,7 @@ public class PageProductsService {
         this.pageRepository = pageRepository;
     }
 
-    public Page<Product> findAllWithPaging(Integer pageNumber){
-        return pageRepository.findAll(PageRequest.of(pageNumber, 5, Sort.by(Sort.Direction.ASC, "cost")));
+    public List<Product> findAllWithPaging(Integer pageNumber){
+        return pageRepository.findAllBy(PageRequest.of(pageNumber, 5, Sort.by(Sort.Direction.ASC, "cost")));
     }
 }
