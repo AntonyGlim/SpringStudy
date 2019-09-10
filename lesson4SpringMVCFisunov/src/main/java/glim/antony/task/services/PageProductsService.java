@@ -21,6 +21,6 @@ public class PageProductsService {
     }
 
     public List<Product> findAllWithPaging(Integer pageNumber){
-        return pageRepository.findAllBy(PageRequest.of(pageNumber, 5, Sort.by(Sort.Direction.ASC, "cost")));
+        return pageRepository.findAllBy(PageRequest.of(pageNumber, 10, Sort.by(Sort.Direction.ASC, "cost")));
     }
 }

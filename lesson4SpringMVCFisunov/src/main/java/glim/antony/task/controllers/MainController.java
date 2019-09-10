@@ -58,7 +58,7 @@ public class MainController {
 
     @GetMapping("/products/find")
     public String showProductsOnPages(Model model){
-        List<Product> productsList = pageProductsService.findAllWithPaging(1);
+        List<Product> productsList = pageProductsService.findAllWithPaging(5);
         model.addAttribute("products", productsList);
         return "products";
     }
