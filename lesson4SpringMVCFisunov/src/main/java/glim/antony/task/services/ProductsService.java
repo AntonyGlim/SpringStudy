@@ -21,7 +21,15 @@ public class ProductsService {
         return (List<Product>)productsRepository.findAll();
     }
 
+    public List<Product> findAllByCostBetween(Integer minCost, Integer maxCost) {
+        return (List<Product>)productsRepository.findAllByCostBetween(minCost, maxCost);
+    }
+
     public Product findByCost(Integer cost){
         return productsRepository.findByCost(cost);
+    }
+
+    public void deleteProductById(Long id) {
+        productsRepository.deleteById(id);
     }
 }

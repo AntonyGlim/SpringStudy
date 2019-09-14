@@ -2,27 +2,31 @@ package glim.antony.task.controllers;
 
 import glim.antony.task.entities.Product;
 import glim.antony.task.repositories.ProductsRepository;
+import glim.antony.task.services.PageProductsService;
 import glim.antony.task.services.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class MainController {
     private ProductsService productsService;
-
-    @Autowired
-    private ProductsRepository productsRepository;
+    private PageProductsService pageProductsService;
 
     @Autowired
     public void setProductsService(ProductsService productsService) {
         this.productsService = productsService;
+    }
+
+    @Autowired
+    public void setPageProductsService(PageProductsService pageProductsService) {
+        this.pageProductsService = pageProductsService;
     }
 
     @GetMapping("/")
@@ -37,20 +41,42 @@ public class MainController {
         return "products";
     }
 
-    @GetMapping("/submit_form")
-    @ResponseBody
-    public String getFormResult(@RequestParam(name = "minOrMax") String word, Model model) {
-        List<Product> productsList = new ArrayList<>();
-        if (word.equalsIgnoreCase("min")){
-            productsList.add((Product)productsService.findByCost(12));
+    @GetMapping("/minmaxfilter")
+    public String showProductsWithFilterByMinMaxCost(
+            @RequestParam(name = "minPrice", required = false) Integer minPrice,
+            @RequestParam(name = "maxPrice", required = false) Integer maxPrice,
+            Model model
+    ){
+        if (minPrice == null){
+            minPrice = 0;
         }
-        if (word.equalsIgnoreCase("max")){
-
+        if (maxPrice == null){
+            maxPrice = Integer.MAX_VALUE;
         }
-        if (word.equalsIgnoreCase("minandmax")){
-
-        }
+        List<Product> productsList = productsService.findAllByCostBetween(minPrice, maxPrice);
         model.addAttribute("products", productsList);
         return "products";
     }
+
+    @GetMapping("/products/find")
+    public String showProductsOnPages(
+            @RequestParam(name = "pageNumber", required = false) Optional<Integer> pageNumber,
+            @RequestParam(name = "size", required = false) Optional<Integer> size,
+            Model model
+    ){
+        int currentPage = pageNumber.orElse(0);
+        int pageSize = size.orElse(5);
+
+        List<Product> productsList = pageProductsService.findAllWithPaging(currentPage, pageSize);
+        model.addAttribute("products", productsList);
+
+        return "products";
+    }
+
+    @GetMapping("/products/delete/{id}")
+    public String deleteProductById(@PathVariable(name = "id") Long id){
+        productsService.deleteProductById(id);
+        return "redirect:/products/";
+    }
+
 }
